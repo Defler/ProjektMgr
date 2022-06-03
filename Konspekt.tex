@@ -1,0 +1,155 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mhchem}
+\usepackage{stmaryrd}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
+\urlstyle{same}
+
+\begin{document}
+\section{Sieć neuronowa}
+wykrywająca raka ptuc w oparciu o zdjęcia klatek piersiowych
+
+Konspekt pracy magisterskiej
+
+Autor: Jakub Przyborowski
+
+\section{Spis treści}
+$\mathrm{~ S t r e s z c z e n i e ~ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+$\mathrm{~ S p e c y f i k a c j a ~ p r a k t y c z n e g o ~ p r o b l e m u ~ b a d a w c z e g o ~ . . . . . . . . . . . . . . . . . . . . .}$
+
+$\mathrm{~ U z a s a d n i e n i e ~ p r a k t y c z n e j ~ w a g i ~ p r o b l e m u ~ . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+Odniesienie do literatury ......................................................4
+
+$\mathrm{~ I n n e ~ p o d e j s ́ c i a ~ z n a n e ~ w ~ l i t e r a t u r z e ~ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+$\mathrm{~ Z ́ r o ́ d ł a ~ i ~ z a k r e s ~ p l a n o w a n y c h ~ d a n y c h ~ . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+Wstępny zarys koncepcji i oczekiwane wyniki ................................... 7
+
+$\mathrm{~ O p i s ~ a r c h i t e k t u r y ~ o p r o g r a m o w a n i a . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+$\mathrm{~ P o d s u m o w a n i e . . . . . . . . .}$
+
+Używane źródła danych ....................................................... 11
+
+$\mathrm{~ B i b l i o g r a f i a . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}$
+
+\section{Streszczenie}
+Praca magisterska ma na celu stworzenie sieci neuronowej, która będzie identyfikować czy pacjent ma raka płuc czy nie. Algorytm będzie używał w tym celu zdjęć DICOM (Digital Imaging and Communications in Medicine) przedstawiających płuca pacjentów.
+
+\section{Specyfikacja praktycznego problemu badawczego}
+Sieć neuronowa stworzona w tym projekcie będzie klasyfikować zdjęcia DICOM i na ich podstawie oceniać czy pacjent jest zagrożony rakiem. Dane wcześniej zostaną poddane preprocesingowi, tak by mogły być używane przez algorytm. Projekt zakłada też użycie AB testów w celu znalezienia najskuteczniej działającego algorytmu. Dodatkowo, planowane jest również użycie systemów rekomendacji, które będą miały na celu przedstawienie, jak należy dalej działać z pacjentem.
+
+\section{Uzasadnienie praktycznej wagi problemu}
+Rak jest śmiertelną choroba, z którą ludzkość zmaga się od zawsze i jak dotąd nie znaleziono skutecznej metody, aby temu przeciwdziałać. Rak płuc jest najpopularniejszą przyczyną śmierci wśród chorób rakowych na świecie. Dodatkowo jego leczenie jest bardzo kosztowne, a potrafi przedłużyć życie pacjenta tylko o kilkanaście miesięcy. Wczesne wykrycie jego rozwoju sprawia jednak, że pacjenta można uratować przed śmiercią lub znacznie wydłużyć jego życie. Projekt ten ma na celu przynieść znaczącą pomoc lekarzom i docelowo ocalić ludzkie istnienia.
+
+\section{Odniesienie do literatury}
+\section{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7518939/}
+Artykuł porusza temat sztucznej inteligencji mającej na celu wczesną identyfikację raka płuc u pacjentów. Na początku autor opisuje wagę problemu - rak płuc to groźna choroba, lecz wczesna detekcja może zahamować jego rozwój. Porusza temat niedokładności zmysłów człowieka oraz efekt wypalenia zawodowego wśród lekarzy i radiologów. Odpowiedzią na te problemy ma być sztuczna inteligencja, która z wysoką skutecznością będzie w stanie identyfikować chorobę, tym samym znacząco usprawniając pracę lekarzy, dzięki czemu będą oni w stanie wykorzystać swój czas w innym polu. Następnie autor przechodzi do opisu sztucznej inteligencji stworzonej przez Toğaçar et al. Jest to model hybrydowy będący połączeniem LeNet, AlexNet i VGG-16. Dane otrzymane z tej konwolucyjnej sieci neuronowej były następnie używane jako wejście w następujących modelach klasyfikacji: regresji liniowej, Support Vector Machine i K Nearest Neighbours. Klasyfikatory były testowane i porównywano, który model jest najlepszy. Na koniec zgodnie z metodą minimalna redundancja maksymalna istotność (mRMR) wybierane zostały najważniejsze atrybuty danych. Po badaniach, grupie udało się osiągnąć 99.51\% trafności dla stworzonego przez nich modelu. W dalszej części artykułu twórca dokładniej opisuje dzieło grupy Toğaçar et al. oraz porównuje je z innymi rozwiązaniami.
+
+\section{Inne podejścia znane w literaturze}
+Wyżej wymieniony artykuł wspomina również o innych grupach badawczych zajmujących się tematem raka płuc. Pierwszą z nich jest da Silva et al. Ich konwolucyjna sieć neuronowa używała optymalizacji PSO (Particle Swarm Optimization) i osiągnęła wydajność $97.62 \%$. Jest to wynik gorszy od Toğaçar et al., gdyż ta sieć nie używała augmentacji obrazu, a wybór atrybutów następował nie po, lecz przed strukturą $\mathrm{CNN}$.
+
+Inna grupa to Jung et al., której model osiągnął wydajność $96.30 \%$. Powód niższej wydajności względem Toğaçar był podobny co przy Silva et al. Dodatkowo w modelu Jung występuje trójwymiarowa sieć konwolucyjna sieć neuronowa, co przełożyło się na wzrost wymagań dotyczących danych treningowych oraz mocy obliczeniowej komputerów.
+
+Ostatnim modelem przedstawionym w artykule przez autora jest model Lyu i Ling. Owy model składał się z wielowymiarowej sieci klasyfikującej CNN, a jego wydajność osiągała wartość $84.41 \%$. Niska wydajność w porównaniu do poprzednich grup jest efektem braku augmentacji obrazu oraz braku mRMR.
+
+\section{Źródła i zakres planowanych danych}
+Dane do eksperymentów będą pochodzić ze strony Cancer Imaging Archive z zestawu LIDC-IDRI (Lung Image Database Consortium). Są to zdjęcia tomograficzne klatek piersiowych zapisane w formacie DICOM (Digital Imagining and Comunications in Medicine), które zapewniają o wiele więcej szczegółów niż zwykłe obrazy rentgenowskie w formatach takich jak png. Zestaw danych to ok. $125 \mathrm{~GB}$ zdjęć dotyczących 1010 pacjentów.
+
+Link do zestawu danych: \href{https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI}{https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI}
+
+Ze względu na specyficzny format danych, jej analiza wymaga użycia bardziej rozbudowanych algorytmów, które zostaną stworzone podczas zgłębienia prac nad projektem.
+
+Dodatkowo, jeśli przedstawione dane będą niewystarczające, projekt będzie można rozszerzyć o sieć GAN (Generative Adversarial Network), w celu stworzenia syntetycznych danych do eksperymentowania.
+
+\section{Wstępny zarys koncepcji i oczekiwane wyniki}
+Stworzony projekt będzie podzielony na następujące etapy:
+
+a. Wczytanie danych
+
+b. Preprocesing danych
+
+c. Segmentacja danych - przetworzenie danych w celu wyciągnięcia jedynie kluczowych danych obrazu, w celu zmniejszenia obszaru, który model będzie musiał przebadać
+
+d. Klasyfikacja danych - model ocenia czy dany pacjent ma raka płuc
+
+Stworzona w projekcie sieć neuronowa zakłada użycie różnych algorytmów klasyfikacji w celu ocenienia występowania raka. Należeć do nich będą SVM (Support Vector Machines), KNN (K Nearest Neighbours) oraz regresja liniowa. Aby wybrać najlepszy klasyfikator użyte będą $\mathrm{AB}$ testy, dzięki którym będzie można porównać wyniki celności klasyfikacji.
+
+Algorytm będzie musiał wybrać najważniejsze atrybuty danych, z których składają się zestawy, aby uzyskać wysoką celność. W tym celu planowane jest użycie nadzorowanych technik wyboru atrybutów (feature selection) takich jak drzewa czy RFE (Recursive Feature Elimination). Dodatkowo użyte mogą być nienadzorowane techniki - korelacja. Wybór najlepszej opcji będzie można uzyskać dzięki AB testom.
+
+W celu dalszej opieki nad pacjentem mogą zostać użyte systemy rekomendacji. Będą one sugerowały jak należy postąpić z wynikami analizy, np. czy guza można wyciąć czy wymagana jest inna akcja. Będzie to jednak wymagało znacznego zgłębienia się w tematyce medycznej. Cały projekt będzie napisany używając języka Python, przy użyciu kluczowych dla machine learning bibliotek:
+
+\begin{itemize}
+  \item Numpy
+
+  \item Scipy
+
+  \item Scikit-learn
+
+  \item Theano
+
+  \item TensorFlow
+
+  \item Keras
+
+  \item PyTorch
+
+  \item Pandas
+
+\end{itemize}
+Wydajność, miara sukcesu projektu będzie obliczana dzięki celności z jaką klasyfikator ocenia zdjęcie płuc pacjenta. Jak już wcześniej zaznaczono najlepsza wersja projektu będzie wyznaczona dzięki AB testom.
+
+\section{Opis architektury oprogramowania}
+Oprogramowanie - kod w języku Python będzie podzielony na trzy kluczowe części:
+
+\begin{itemize}
+  \item Preprcocessing danych
+
+  \item Segmentacja danych
+
+  \item Klasyfikacja
+
+\end{itemize}
+Preprocessing danych - etap ten będzie odpowiadał za przygotowanie danych dla algorytmu. Tutaj zostaną stworzone obrazy i maski dla danych oraz zostaną one zapisane w odpowiednim folderze. Dodatkowo zostanie również utworzony plik z metadanymi, które będą zawierały informacje między innymi o tym czy dany pacjent został określony przez doktorów jako rakowy. Dane zostaną podzielone na zestaw treningowy, walidacyjny $i$ testowy.
+
+Segmentacja danych - ten etap będzie odpowiadał za ,,wycięcie" kluczowych dla algorytmu obrazów, dzięki czemu ilość informacji przetwarzanych przez algorytm znacząco zmaleje.
+
+Klasyfikacja - ostatni etap sieci odpowiadający za ocenienie czy pacjent jest rakowy. W tym celu zostaną użyte znane algorytmy klasyfikacji takie jak KNN, SVM i regresja liniowa.
+
+Link github zawierający kod dotyczący preprocessingu: \href{https://github.com/Defler/ProjektMgr}{https://github.com/Defler/ProjektMgr}
+
+\section{Podsumowanie}
+Omówiona praca magisterska będzie złożonym projektem, na który będą składać się liczne rozwiązania używane w data science. Stworzony projekt będzie jednak mógł mieć duże znaczenie w rozwoju medycyny. Główny cel algorytmu, czyli klasyfikację zdjęć klatek piersiowych pacjentów w celu wykrycia raka, w przyszłości będzie można rozszerzyć o system proponujący najlepsze leczenie dla pacjenta. Dodatkowo, można również zaimplementować możliwość wykrywania innych chorób, co uczyniłoby z obecnego algorytmu bardziej uniwersalne narzędzie medyczne.
+
+\section{Używane źródla danych}
+Cancer Imagining Archive:
+
+\href{https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI}{https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI}
+
+Konto github z pomocnym kodem:
+
+\href{https://github.com/jaeho3690}{https://github.com/jaeho3690}
+
+\section{Bibliografia}
+Artykuł dotyczący tworzenia sieci neuronowej identyfikującej raka płuc: \href{https://medium.com/analytics-vidhya/how-to-start-your-very-first-lungcancer-detection-project-using-python-part-1-3ab490964aae}{https://medium.com/analytics-vidhya/how-to-start-your-very-first-lungcancer-detection-project-using-python-part-1-3ab490964aae}
+
+Artykuł dotyczący rozwiązań problemu identyfikacji raka płuc przez sieci neuronowe:
+
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7518939/}{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7518939/}
+
+Artykuł opisujący sieci GAN:
+
+\href{https://towardsdatascience.com/synthetic-data-generation-using-conditionalgan-45f91542ec6b}{https://towardsdatascience.com/synthetic-data-generation-using-conditionalgan-45f91542ec6b}
+
+Artykuł opisujący najlepsze algorytmy klasyfikacji: \href{https://monkeylearn.com/blog/classification-algorithms/}{https://monkeylearn.com/blog/classification-algorithms/}
+
+
+\end{document}
